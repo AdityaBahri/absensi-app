@@ -34,7 +34,7 @@ export default function Login({ status, canResetPassword }) {
             <Head title="Log in" />
 
             {/* Left Side - Hero / Brand */}
-            <div className="hidden lg:flex flex-col justify-between w-1/2 bg-primary text-primary-foreground p-12 relative overflow-hidden">
+            <div className="hidden lg:flex flex-col justify-between w-1/2 bg-gradient-to-br from-primary via-teal-700 to-brand-red text-primary-foreground p-12 relative overflow-hidden">
                 <div className="relative z-10">
                     <h2 className="text-3xl font-bold tracking-tight mb-2">Diskominfo Kota Makassar</h2>
                     <div className="inline-flex items-center rounded-full border border-primary-foreground/30 px-3 py-1 text-sm mb-12">
@@ -117,7 +117,7 @@ export default function Login({ status, canResetPassword }) {
 
                         <Button 
                             type="submit" 
-                            className="w-full h-12 rounded-xl text-base font-semibold shadow-lg shadow-primary/25" 
+                            className="w-full h-12 rounded-xl text-base font-semibold shadow-lg shadow-primary/25 bg-gradient-to-r from-primary to-brand-red hover:from-primary/90 hover:to-brand-red/90 text-white border-0" 
                             disabled={processing}
                         >
                             Masuk ke Portal Lobi

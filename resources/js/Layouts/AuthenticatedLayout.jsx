@@ -54,7 +54,7 @@ export default function AuthenticatedLayout({ header, children }) {
                 <div className="flex h-16 items-center justify-between px-6 border-b border-slate-100">
                     <Link href="/" className="flex items-center gap-2">
                         <ApplicationLogo className="block h-8 w-auto fill-primary text-primary" />
-                        <span className="text-xl font-bold tracking-tight text-slate-900">Komi<span className="text-primary">nfo</span></span>
+                        <span className="text-xl font-bold tracking-tight text-slate-900">Komi<span className="text-primary">nf</span><span className="text-brand-red">o</span></span>
                     </Link>
                     <button 
                         onClick={() => setSidebarOpen(false)}
@@ -72,8 +72,8 @@ export default function AuthenticatedLayout({ header, children }) {
                                 href={item.href}
                                 className={`group flex items-center px-3 py-2.5 text-sm font-medium rounded-xl transition-all duration-200 ${
                                     item.current
-                                        ? 'bg-primary/10 text-primary shadow-sm'
-                                        : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'
+                                        ? 'bg-gradient-to-r from-primary/15 to-brand-red/15 text-slate-900 shadow-sm border-l-4 border-brand-red'
+                                        : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900 border-l-4 border-transparent'
                                 }`}
                             >
                                 <item.icon
@@ -91,7 +91,7 @@ export default function AuthenticatedLayout({ header, children }) {
                 {/* User Profile in Sidebar Bottom */}
                 <div className="border-t border-slate-100 p-4 space-y-1">
                     <div className="flex items-center gap-3 px-2 py-2">
-                        <div className="h-9 w-9 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold text-sm shadow-sm flex-shrink-0">
+                        <div className="h-9 w-9 rounded-full bg-brand-red/10 flex items-center justify-center text-brand-red font-bold text-sm shadow-sm flex-shrink-0">
                             {user.name.charAt(0)}
                         </div>
                         <div className="flex flex-col text-left min-w-0">
@@ -108,7 +108,7 @@ export default function AuthenticatedLayout({ header, children }) {
                     </Link>
                     <button
                         onClick={() => router.post(route('logout'))}
-                        className="flex items-center gap-2.5 w-full px-3 py-2.5 rounded-xl text-sm font-medium text-red-600 hover:bg-red-50 hover:text-red-700 transition-colors"
+                        className="flex items-center gap-2.5 w-full px-3 py-2.5 rounded-xl text-sm font-medium text-brand-red hover:bg-brand-red/10 transition-colors"
                     >
                         <LogOut className="h-4 w-4" />
                         Keluar
