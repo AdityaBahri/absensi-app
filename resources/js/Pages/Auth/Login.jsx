@@ -34,9 +34,14 @@ export default function Login({ status, canResetPassword }) {
             <Head title="Log in" />
 
             {/* Left Side - Hero / Brand */}
-            <div className="hidden lg:flex flex-col justify-between w-1/2 bg-gradient-to-br from-primary via-teal-700 to-brand-red text-primary-foreground p-12 relative overflow-hidden">
+            <div className="hidden lg:flex flex-col justify-between w-1/2 bg-gradient-to-br from-primary via-red-900 to-brand-red text-primary-foreground p-12 relative overflow-hidden">
                 <div className="relative z-10">
-                    <h2 className="text-3xl font-bold tracking-tight mb-2">Diskominfo Kota Makassar</h2>
+                    <div className="flex items-center gap-4 mb-4">
+                        <div className="bg-white p-2 rounded-2xl shadow-lg">
+                            <img src="/Logo.png" alt="Logo" className="h-12 w-auto object-contain" />
+                        </div>
+                        <h2 className="text-3xl font-bold tracking-tight">Diskominfo Kota Makassar</h2>
+                    </div>
                     <div className="inline-flex items-center rounded-full border border-primary-foreground/30 px-3 py-1 text-sm mb-12">
                         Akses Digital Diskominfo
                     </div>
@@ -59,7 +64,8 @@ export default function Login({ status, canResetPassword }) {
             {/* Right Side - Form */}
             <div className="flex w-full lg:w-1/2 items-center justify-center p-8 bg-slate-50/50 backdrop-blur-md">
                 <div className="w-full max-w-md space-y-8 bg-white p-10 rounded-3xl shadow-xl shadow-slate-200/50 border border-slate-100">
-                    <div className="text-center">
+                    <div className="text-center flex flex-col items-center">
+                        <img src="/Logo.png" alt="Logo" className="h-16 w-auto mb-4 object-contain lg:hidden" />
                         <h2 className="text-3xl font-bold tracking-tight text-slate-900">Selamat Datang</h2>
                         <p className="mt-2 text-sm text-slate-500">
                             Masukkan kredensial akun Anda untuk melanjutkan

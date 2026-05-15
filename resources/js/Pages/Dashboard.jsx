@@ -48,7 +48,7 @@ export default function Dashboard({ todayAttendance, history, recentPermissions,
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
 
                     {/* Welcome Banner */}
-                    <div className="bg-gradient-to-r from-primary via-teal-600 to-brand-red rounded-3xl p-7 text-white shadow-xl relative overflow-hidden flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                    <div className="bg-gradient-to-r from-primary via-red-800 to-brand-red rounded-3xl p-7 text-white shadow-xl relative overflow-hidden flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                         <div className="relative z-10">
                             <p className="text-primary-foreground/70 text-sm font-medium uppercase tracking-widest mb-1">Selamat Datang 👋</p>
                             <h3 className="text-2xl font-bold">{auth.user.name}</h3>

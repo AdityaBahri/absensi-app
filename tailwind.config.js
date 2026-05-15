@@ -22,7 +22,7 @@ export default {
         },
         extend: {
             colors: {
-                'brand-red': '#9a2b25',
+                'brand-red': '#8C2529',
                 border: "hsl(var(--border))",
                 input: "hsl(var(--input))",
                 ring: "hsl(var(--ring))",
