@@ -25,8 +25,8 @@ class DatabaseSeeder extends Seeder
 
         // Standard User
         User::factory()->create([
-            'name' => 'Ahmad Hidayat',
-            'email' => 'ahmad@magang.go.id',
+            'name' => 'Kezia Tappi',
+            'email' => 'kezia@magang.go.id',
             'password' => bcrypt('password'),
             'role' => 'user',
             'instansi' => 'Universitas Hasanuddin',
