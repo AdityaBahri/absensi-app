@@ -31,6 +31,7 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     Route::post('/users/{id}/reset-device', [\App\Http\Controllers\AdminController::class, 'resetDevice'])->name('users.reset-device');
     Route::get('/attendance', [\App\Http\Controllers\AdminController::class, 'attendance'])->name('attendance');
     Route::get('/export', [\App\Http\Controllers\AdminController::class, 'export'])->name('export');
+    Route::get('/export/download', [\App\Http\Controllers\AdminController::class, 'downloadExport'])->name('export.download');
 });
 
 require __DIR__.'/auth.php';

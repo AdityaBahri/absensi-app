@@ -84,4 +84,70 @@ class AdminController extends Controller
     {
         return Inertia::render('Admin/Export');
     }
+
+    public function downloadExport(Request $request)
+    {
+        $startDate = $request->input('start_date');
+        $endDate = $request->input('end_date');
+        $type = $request->input('type', 'all');
+        $format = $request->input('format', 'csv');
+        
+        $extension = $format === 'xlsx' ? 'csv' : 'csv'; // Force CSV to avoid corruption warnings since we generate CSV
+        $filename = "export_{$type}_{$startDate}_{$endDate}.{$extension}";
+        
+        $headers = [
+            "Content-type"        => "text/csv",
+            "Content-Disposition" => "attachment; filename=$filename",
+            "Pragma"              => "no-cache",
+            "Cache-Control"       => "must-revalidate, post-check=0, pre-check=0",
+            "Expires"             => "0"
+        ];
+        
+        $columns = ['Tanggal', 'Nama', 'Instansi', 'Tipe', 'Status/Waktu Hadir', 'Keterangan'];
+        
+        $callback = function() use($startDate, $endDate, $type, $columns) {
+            $file = fopen('php://output', 'w');
+            fputcsv($file, $columns);
+            
+            if ($type === 'all' || $type === 'attendance') {
+                $attendances = Attendance::with('user')
+                    ->whereBetween('attendance_date', [$startDate, $endDate])
+                    ->orderBy('attendance_date', 'asc')
+                    ->get();
+                    
+                foreach ($attendances as $att) {
+                    fputcsv($file, [
+                        $att->attendance_date,
+                        $att->user ? $att->user->name : 'Unknown',
+                        $att->user ? ($att->user->instansi ?? '-') : '-',
+                        'Hadir',
+                        $att->checkin_time ? date('H:i:s', strtotime($att->checkin_time)) : '-',
+                        $att->location ?? '-'
+                    ]);
+                }
+            }
+            
+            if ($type === 'all' || $type === 'permission') {
+                $permissions = Permission::with('user')
+                    ->whereBetween('permission_date', [$startDate, $endDate])
+                    ->orderBy('permission_date', 'asc')
+                    ->get();
+                    
+                foreach ($permissions as $perm) {
+                    fputcsv($file, [
+                        $perm->permission_date,
+                        $perm->user ? $perm->user->name : 'Unknown',
+                        $perm->user ? ($perm->user->instansi ?? '-') : '-',
+                        ucfirst($perm->permission_type),
+                        ucfirst($perm->status),
+                        $perm->reason ?? '-'
+                    ]);
+                }
+            }
+            
+            fclose($file);
+        };
+        
+        return response()->stream($callback, 200, $headers);
+    }
 }
